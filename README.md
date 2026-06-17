@@ -55,8 +55,6 @@ Acesse: http://localhost:8080
 
 ## 📚 Conteúdos Estudados
 
-## 📚 Conteúdos Estudados
-
 - ✅ Módulo 01 - Introdução ao Docker
 - ✅ Módulo 02 - Compreendendo Contêineres e Imagens
 - ✅ Módulo 03 - Gerenciamento de Contêineres
