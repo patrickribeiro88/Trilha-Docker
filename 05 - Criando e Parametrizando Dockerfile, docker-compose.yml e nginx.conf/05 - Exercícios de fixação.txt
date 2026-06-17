@@ -1,0 +1,11 @@
+1 - Explique, com suas palavras, como funciona o mapeamento de portas no Docker. 
+
+O mapeamento de portas no Docker é o processo que permite acessar uma aplicação que está rodando dentro de um contêiner a partir do computador host.
+
+Ele funciona associando uma porta do computador (porta externa) a uma porta do contêiner (porta interna), utilizando o formato:
+
+porta_externa:porta_interna
+
+Por exemplo, no mapeamento 8080:80, ao acessar localhost:8080 no navegador, a requisição é redirecionada para a porta 80 dentro do contêiner.
+
+Assim, o Docker cria uma comunicação entre o ambiente externo e o serviço interno, permitindo o acesso à aplicação.

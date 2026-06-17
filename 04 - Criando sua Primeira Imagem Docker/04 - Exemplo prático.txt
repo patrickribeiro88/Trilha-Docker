@@ -1,0 +1,51 @@
+1. Crie um arquivo chamado Dockerfile (sem extensão) e adicione o seguinte conteúdo: FROM alpine
+CMD ["echo", "Hello Docker!"]
+
+$ docker build -t meu-teste .
+docker run meu-teste
+[+] Building 0.6s (5/5) FINISHED            docker:desktop-linux
+ => [internal] load build definition from Dockerfile        0.0s
+ => => transferring dockerfile: 81B                         0.0s
+ => [internal] load metadata for docker.io/library/alpine:  0.2s
+ => [internal] load .dockerignore                           0.0s
+ => => transferring context: 2B                             0.0s
+ => CACHED [1/1] FROM docker.io/library/alpine:latest@sha2  0.0s
+ => => resolve docker.io/library/alpine:latest@sha256:5b10  0.0s
+ => exporting to image                                      0.1s
+ => => exporting layers                                     0.0s
+ => => exporting manifest sha256:b18fed439999f5fdf6d01cd24  0.0s
+ => => exporting config sha256:b8e5a20df4034a5168c5519102f  0.0s
+ => => exporting attestation manifest sha256:285f705d3c99c  0.0s
+ => => exporting manifest list sha256:8d7d4123807b9f7a9206  0.0s
+ => => naming to docker.io/library/meu-teste:latest         0.0s
+ => => unpacking to docker.io/library/meu-teste:latest      0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/wjzd0dtb27gwebexldi6anji0
+Hello Docker!
+
+2. Construa a imagem Docker a partir do Dockerfile:
+
+$ docker build -t hello-docker .
+[+] Building 0.4s (5/5) FINISHED            docker:desktop-linux
+ => [internal] load build definition from Dockerfile        0.0s
+ => => transferring dockerfile: 81B                         0.0s
+ => [internal] load metadata for docker.io/library/alpine:  0.0s
+ => [internal] load .dockerignore                           0.0s
+ => => transferring context: 2B                             0.0s
+ => CACHED [1/1] FROM docker.io/library/alpine:latest@sha2  0.0s
+ => => resolve docker.io/library/alpine:latest@sha256:5b10  0.0s
+ => exporting to image                                      0.1s
+ => => exporting layers                                     0.0s
+ => => exporting manifest sha256:b18fed439999f5fdf6d01cd24  0.0s
+ => => exporting config sha256:b8e5a20df4034a5168c5519102f  0.0s
+ => => exporting attestation manifest sha256:bf7b758dcef68  0.0s
+ => => exporting manifest list sha256:7698d2a0148bd9977fc9  0.0s
+ => => naming to docker.io/library/hello-docker:latest      0.0s
+ => => unpacking to docker.io/library/hello-docker:latest   0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/cv70s8v7qtxpkf120lsve0hxc
+
+3. Execute a imagem criada
+
+$ docker run hello-docker
+Hello Docker!

@@ -1,0 +1,23 @@
+1. Pare um contêiner em execução utilizando o comando:
+
+$ docker stop e62b2cdc49ea
+e62b2cdc49ea
+
+
+2. remova o contêiner parado utilizando
+
+$ docker rm  e62b2cdc49ea
+e62b2cdc49ea
+
+3. Explique: 
+
+a. O que significa dizer que um contêiner é efêmero?
+
+Significa que ele é descartável e temporário. Qualquer alteração feita dentro dele (instalar um pacote ou salvar um arquivo) desaparece permanentemente assim que o contêiner é removido. Ele sempre volta ao estado original da imagem quando é recriado.
+
+b. Quais as vantagens desse conceito no desenvolvimento e deploy de aplicações?
+
+Padronização: Garante que o ambiente seja sempre o mesmo, eliminando erros de configuração manual.
+Escalabilidade: Você pode ligar e desligar centenas de cópias do app rapidamente conforme a demanda.
+Recuperação rápida: Se um contêiner der erro, basta deletá-lo e subir um novo em segundos (autocorreção).
+Segurança: Impede o acúmulo de arquivos inúteis ou modificações maliciosas persistentes no sistema.

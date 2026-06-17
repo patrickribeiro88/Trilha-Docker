@@ -1,0 +1,41 @@
+1. Modifique o Dockerfile para executar outro comando, como: echo "Bem-vindo ao Docker!"
+
+FROM alpine
+CMD ["echo", "Bem-vindo ao Docker!"]
+
+$ docker build -t hello-docker .
+[+] Building 0.4s (5/5) FINISHED            docker:desktop-linux
+ => [internal] load build definition from Dockerfile        0.0s
+ => => transferring dockerfile: 88B                         0.0s
+ => [internal] load metadata for docker.io/library/alpine:  0.0s
+ => [internal] load .dockerignore                           0.0s
+ => => transferring context: 2B                             0.0s
+ => CACHED [1/1] FROM docker.io/library/alpine:latest@sha2  0.0s
+ => => resolve docker.io/library/alpine:latest@sha256:5b10  0.0s
+ => exporting to image                                      0.2s
+ => => exporting layers                                     0.0s
+ => => exporting manifest sha256:5c1bf300d34a5d0dcea44cfa8  0.0s
+ => => exporting config sha256:5939c73cff6e81eefd4c5443850  0.0s
+ => => exporting attestation manifest sha256:9efe9cf021e78  0.0s
+ => => exporting manifest list sha256:75b18871474ea32615b1  0.0s
+ => => naming to docker.io/library/hello-docker:latest      0.0s
+ => => unpacking to docker.io/library/hello-docker:latest   0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/t5j355uefpt9ameyupgm5ta0i
+
+$ docker run hello-docker
+Bem-vindo ao Docker!
+
+2. Explique: 
+● Qual a função da instrução FROM 
+● Qual a função da instrução CMD 
+● Por que o Dockerfile é importante para padronização de ambientes
+
+● Função da instrução FROM
+Define a Imagem Base. É o ponto de partida do contêiner (como um sistema operacional Linux limpo ou um ambiente com Node/Python já instalados). Todo Dockerfile precisa começar com ela.
+
+● Função da instrução CMD
+Define o comando padrão que o contêiner vai executar assim que for ligado (ex: iniciar o servidor web ou rodar um script).
+
+● Importância do Dockerfile na padronização
+Ele funciona como uma receita de bolo escrita em código. Isso garante que o projeto rode exatamente da mesma forma na sua máquina, na máquina de um colega ou no servidor de produção, eliminando o erro do "na minha máquina funciona".

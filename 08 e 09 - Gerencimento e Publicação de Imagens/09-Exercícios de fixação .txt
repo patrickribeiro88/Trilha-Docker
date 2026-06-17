@@ -1,0 +1,42 @@
+1. Publique uma imagem Docker no Docker Hub. 
+
+ docker login
+Authenticating with existing credentials... [Username: patricktjf]
+
+i Info → To login with a different account, run 'docker logout' followed by 'docker login'
+
+
+Login Succeeded
+
+$ docker tag minha_primeira_imagem patricktjf/minha_primeira_imagem:v1
+
+$ docker push patricktjf/minha_primeira_imagem:v1
+The push refers to repository [docker.io/patricktjf/minha_primeira_imagem]
+448b04187ff1: Pushed 
+6a0ac1617861: Mounted from library/alpine 
+v1: digest: sha256:bd9f83cb522bc6adb0b9f0dfc322979062ee20b4c11f5ceba2033501964c1f73 size: 855
+
+2. Baixe e execute uma imagem publicada por outro usuário.
+
+$ docker run --rm busybox echo "Missao Docker Hub concluida com sucesso!"
+Unable to find image 'busybox:latest' locally
+latest: Pulling from library/busybox
+b05093807bb0: Pull complete 
+7270b3e1860c: Download complete 
+Digest: sha256:fd8d9aa63ba2f0982b5304e1ee8d3b90a210bc1ffb5314d980eb6962f1a9715d
+Status: Downloaded newer image for busybox:latest
+Missao Docker Hub concluida com sucesso!
+
+
+
+3. Explique a importância do versionamento de imagens Docker. 
+
+O versionamento de imagens (usando tags como :v1, :v2, ou :latest) é importante para garantir a previsibilidade e segurança das aplicações.
+
+Seus três principais benefícios são:
+
+Estabilidade: Evita o uso exclusivo da tag :latest, garantindo que uma atualização automática não quebre o sistema em produção.
+
+Rastreabilidade: Permite que a equipe saiba exatamente qual versão do código e das dependências está rodando em um determinado momento.
+
+Rollback Rápido: Se uma versão nova apresentar um erro grave (bug), basta parar o contêiner e rodar novamente a versão anterior que estava funcionando, minimizando o tempo com o sistema fora do ar.

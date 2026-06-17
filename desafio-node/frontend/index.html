@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Desafio 2 - Vue + Node + MySQL</title>
+</head>
+<body>
+  <h1>Frontend Vue (build) servido pelo Nginx</h1>
+  <p id="resultado">Aguardando resposta da API...</p>
+
+  <script>
+    fetch('/api')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('resultado').innerText = data.mensagem;
+      })
+      .catch(() => {
+        document.getElementById('resultado').innerText = 'Erro ao conectar na API';
+      });
+  </script>
+</body>
+</html>

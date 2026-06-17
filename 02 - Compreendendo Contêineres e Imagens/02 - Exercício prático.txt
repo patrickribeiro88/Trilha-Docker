@@ -1,0 +1,48 @@
+1. Execute o comando abaixo e observe o comportamento do contêiner:
+
+$ docker run alpine
+Unable to find image 'alpine:latest' locally
+latest: Pulling from library/alpine
+6a0ac1617861: Pull complete 
+a63813f19ccb: Download complete 
+4e0cb4ac63e7: Download complete 
+Digest: sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11
+Status: Downloaded newer image for alpine:latest
+
+2. Acesse o Docker Hub e pesquise por uma imagem de banco de dados, como 
+MySQL. 
+
+a. Baixe a imagem 
+
+$ docker pull mysql
+Using default tag: latest
+latest: Pulling from library/mysql
+69edacfaea72: Pull complete 
+4f23ccd26206: Pull complete 
+802b6dd0c6bd: Pull complete 
+5491a2a13e1b: Pull complete 
+8e3f19ed5e67: Pull complete 
+8ec50bfa3b7e: Pull complete 
+e80b372994e5: Pull complete 
+f74943462a4f: Pull complete 
+35300b480a58: Pull complete 
+1dced004aaec: Pull complete 
+9c6d3f438d99: Download complete 
+b3e52f10da63: Download complete 
+Digest: sha256:c11782aa2a96624c1efc121768641d96954faa136d6aa82751b032d8c426ffbc
+Status: Downloaded newer image for mysql:latest
+docker.io/library/mysql:latest
+
+What's next:
+    View a summary of image vulnerabilities and recommendations → docker scout quickview mysql
+
+b. Execute o contêiner localmente (não é necessário configurar usuários ou 
+senhas neste momento, apenas executar)
+
+$ docker run --name mysql-teste -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d mysql
+d23d0003f778d3d4974f77cef05b889a648efeffb08b1fb6824fc3124de61be4
+
+patri@Patrick MINGW64 ~/OneDrive/Documentos/Trilha de Docker
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                 NAMES
+d23d0003f778   mysql     "docker-entrypoint.s…"   39 seconds ago   Up 38 seconds   3306/tcp, 33060/tcp   mysql-teste

@@ -1,0 +1,26 @@
+1. Crie um contêiner que utilize um volume para persistência de dados.
+
+$ docker volume create meu_volume_dados
+meu_volume_dados
+
+$ docker run -dit --name meu_container -v meu_volume_dados:/dados_container alpine
+a59d39f3430038c331a6cfd442ebd74534978b26d62069e423154bbe0509be45
+
+$ docker exec meu_container sh -c 'echo "Estes dados são persistentes!" > /dados_container/arquivo_importante.txt'
+
+
+2. Remova o contêiner e verifique se os dados continuam existindo no host. 
+
+$ docker rm -f meu_container
+meu_container
+
+$ docker run --rm -v meu_volume_dados://dados_container alpine sh -c 'cat /dados_container/arquivo_importante.txt'
+Estes dados são persistentes!
+
+3. Explique por que volumes são essenciais em ambientes de produção.
+
+Em ambientes de produção, os volumes são essenciais porque contêineres são temporários e descartáveis.
+
+Se um contêiner der erro, for atualizado ou apagado, tudo o que foi salvo dentro dele desaparece. Os volumes resolvem isso guardando as informações importantes (como bancos de dados e arquivos) fora do contêiner, de forma segura no servidor.
+
+Resumindo: os volumes garantem que, mesmo que o contêiner seja destruído, os dados da empresa nunca sejam perdidos.

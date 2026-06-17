@@ -1,0 +1,71 @@
+1. Crie uma imagem Docker a partir de um Dockerfile.
+
+$ mkdir exercicio_imagem
+
+$ cd exercicio_imagem
+
+$ echo "FROM alpine" > Dockerfile
+
+$ echo 'CMD echo "Minha primeira imagem funcionou!"' >> Dockerfile
+
+$ docker build -t minha_primeira_imagem .
+[+] Building 0.5s (5/5) FINISHED            docker:desktop-linux
+ => [internal] load build definition from Dockerfile        0.1s
+ => => transferring dockerfile: 93B                         0.0s
+ => [internal] load metadata for docker.io/library/alpine:  0.1s
+ => [internal] load .dockerignore                           0.0s
+ => => transferring context: 2B                             0.0s
+ => CACHED [1/1] FROM docker.io/library/alpine:latest@sha2  0.0s
+ => => resolve docker.io/library/alpine:latest@sha256:5b10  0.0s
+ => exporting to image                                      0.2s
+ => => exporting layers                                     0.0s
+ => => exporting manifest sha256:46d9324634f3a43495d0c92b8  0.0s
+ => => exporting config sha256:cb0591b8d46e253ed470c478f55  0.0s
+ => => exporting attestation manifest sha256:df1a3b8bc95e9  0.0s
+ => => exporting manifest list sha256:a3d3c81b16c58b28279d  0.0s
+ => => naming to docker.io/library/minha_primeira_imagem:l  0.0s
+ => => unpacking to docker.io/library/minha_primeira_image  0.0s
+
+ 1 warning found (use docker --debug to expand):
+ - JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 2)
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/j079h6m0f35lttk9fl6pfx8ly
+
+
+
+2. Liste as imagens criadas no ambiente.
+
+$ docker images
+                                             i Info →   U  In Use
+IMAGE            ID             DISK USAGE   CONTENT SIZE   EXTRA
+alpine:latest    5b10f432ef3d       13.1MB         3.95MB    U   
+hello-docker:latest
+                 75b18871474e         13MB         3.87MB    U   
+hello-world:latest
+                 f9078146db2e       25.9kB         9.49kB    U   
+meu-teste:latest
+                 8d7d4123807b         13MB         3.87MB    U   
+minha_primeira_imagem:latest
+                 a3d3c81b16c5         13MB         3.87MB        
+mysql:5.7        4bc6bc963e6d        700MB          149MB    U   
+mysql:latest     c11782aa2a96        1.3GB          290MB    U   
+nginx:latest     5aca99593157        241MB           66MB    U   
+projeto-docker-web:latest
+                 8977b3f4b8cf        1.6GB          401MB    U  
+
+
+
+3. Remova uma imagem que não esteja mais sendo utilizada. 
+
+$ docker rmi minha_primeira_imagem
+Untagged: minha_primeira_imagem:latest
+Deleted: sha256:a3d3c81b16c58b28279d71ff5853b47169abaccb6f9e0d35f17eada8f38d31f1
+
+
+4. Explique como o cache de camadas do Docker acelera a construção de imagens.
+
+O cache acelera a construção porque o Docker salva o resultado de cada instrução do Dockerfile como uma camada independente.
+
+Ao reconstruir uma imagem, o Docker verifica sequencialmente se houve alguma alteração no código ou na instrução. Se nada mudou em uma determinada etapa, ele simplesmente reaproveita a camada salva no cache em vez de processá-la e baixá-la do zero.
+
+Resumindo: ele só gasta tempo reconstruindo as partes que realmente foram modificadas, pulando o retrabalho e tornando o processo de build muito mais rápido.

@@ -1,0 +1,50 @@
+1. Verifique a conectividade entre os contêineres na mesma rede. 
+
+$ docker network create minha_rede
+756de301ce31707f1d81fdc3fc1bec7190ed52bed20f180b27ddd034797e6b4b
+
+
+$ docker run -dit --name servidor_a --network minha_rede alpine
+b71dfb876fdb0bd6258ffcf3c212381b99107f62b5acbb72e47c1abf4a53b0df
+
+
+$ docker run -dit --name servidor_b --network minha_rede alpine
+958275e813cd992e46b838f491bc7ec5038c83940cca5a64fce9055651cb42d6
+
+
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND     CREATED          STATUS          PORTS     NAMES
+958275e813cd   alpine    "/bin/sh"   20 seconds ago   Up 19 seconds             servidor_b
+b71dfb876fdb   alpine    "/bin/sh"   30 seconds ago   Up 29 seconds             servidor_a
+
+
+$ docker exec servidor_a ping -c 4 servidor_b
+PING servidor_b (172.19.0.3): 56 data bytes
+64 bytes from 172.19.0.3: seq=0 ttl=64 time=0.433 ms
+64 bytes from 172.19.0.3: seq=1 ttl=64 time=0.139 ms
+64 bytes from 172.19.0.3: seq=2 ttl=64 time=0.128 ms
+64 bytes from 172.19.0.3: seq=3 ttl=64 time=0.184 ms
+
+--- servidor_b ping statistics ---
+4 packets transmitted, 4 packets received, 0% packet loss
+round-trip min/avg/max = 0.128/0.221/0.433 ms
+
+
+2. Explique a função das redes Docker. 
+
+A função principal das redes Docker é gerenciar o isolamento e a conectividade dos contêineres.
+
+Por padrão, contêineres são criados de forma isolada. As redes Docker existem para permitir que esses contêineres se comuniquem de maneira segura e controlada entre si, com a máquina hospedeira (host) e com a internet externa. Além da conectividade, elas garantem segurança através da segmentação: você pode colocar um banco de dados e uma aplicação web na mesma rede para que conversem, mantendo o banco de dados invisível para outras redes e para o mundo exterior.
+
+
+3. Descreva, de forma conceitual, os principais tipos de redes Docker: 
+○ bridge → comunicação entre contêineres no mesmo host 
+○ host → contêiner compartilha a rede do host 
+○ overlay → comunicação entre contêineres em múltiplos hosts 
+
+Bridge (Ponte): É o tipo de rede padrão e o mais comum no dia a dia. Conceitualmente, ela cria uma rede virtual privada e isolada dentro do seu servidor (host). Ela serve para permitir a comunicação entre contêineres que estão rodando na mesma máquina física, fornecendo a eles IPs internos e uma resolução de nomes (DNS) automática nas redes customizadas.
+
+Host (Hospedeiro): Neste modo, o Docker remove completamente o isolamento de rede. Conceitualmente, o contêiner compartilha a mesma interface de rede, o mesmo IP e as mesmas portas da máquina hospedeira. Se o contêiner abre a porta 80, ela é aberta diretamente na porta 80 do servidor real. É usado para aplicações que precisam de altíssima performance de rede, eliminando a camada de roteamento do Docker.
+
+Overlay (Sobreposição): É uma rede distribuída construída "por cima" de redes físicas existentes. Conceitualmente, ela serve para conectar contêineres que estão rodando em múltiplos servidores (hosts) físicos diferentes, criando um túnel seguro para que eles conversem como se estivessem todos na mesma máquina local. É o padrão utilizado em ambientes de clusterização e alta disponibilidade (como Docker Swarm).
+
