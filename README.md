@@ -55,13 +55,16 @@ Acesse: http://localhost:8080
 
 ## 📚 Conteúdos Estudados
 
+## 📚 Conteúdos Estudados
+
 - ✅ Módulo 01 - Introdução ao Docker
-- ✅ Módulo 02 - Imagens e Containers
-- ✅ Módulo 03 - Dockerfile
-- ✅ Módulo 04 - Docker Compose
-- ✅ Módulo 05 - Projeto Multi-container
-- ✅ Módulo 06 - Volumes e Persistência de Dados
-- ✅ Módulo 07 - Redes no Docker
+- ✅ Módulo 02 - Compreendendo Contêineres e Imagens
+- ✅ Módulo 03 - Gerenciamento de Contêineres
+- ✅ Módulo 04 - Criando sua Primeira Imagem Docker
+- ✅ Módulo 05 - Criando e Parametrizando Dockerfile, docker-compose.yml e nginx.conf
+- ✅ Módulos 06 e 07 - Volume e Persistência de Dados e Redes no Docker
+- ✅ Módulos 08 e 09 - Gerenciamento e Publicação de Imagens
+- ✅ Módulo 10 - Otimizando e Debugando Contêineres
 
 ---
 
